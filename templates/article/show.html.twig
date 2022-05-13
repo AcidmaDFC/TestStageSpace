@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex flex-row">
+
+        <a href="{{ path('article_index') }}">
+            <button class="btn rounded-pill bg-orange text-white fw-bold">Retour</button>
+        </a>
+
+        <a href="{{ path('article_edit', {'id': article.id}) }}">
+            <button class="btn rounded-pill btn-warning text-white fw-bold">Éditer</button>
+        </a>
+
+        {{ include('article/_delete_form.html.twig') }}
+    </div>
+
+
+    <div class="detail-article d-flex flex-column align-items-center fw-bold mt-3">
+
+        <div class="detail_article_cover">
+            <img class="detail_article_img" src="{{ asset('uploads/covers/' ~ article.cover) }}" alt="">
+        </div>
+
+        <div class="detail_article_title text-orange p-4">
+            {{ article.title }}
+        </div>
+
+        <div class="detail_article_content fw-light p-4 text-break">
+            {{ article.content }}
+        </div>
+
+        <div class="detail_article_date align-self-start px-4 pb-4 fst-italic">
+            Publié le {{ article.dateCreated | date('d/m/Y') }} à {{ article.dateCreated | date('H') }}h{{ article.dateCreated | date('i') }}
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

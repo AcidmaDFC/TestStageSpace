@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <a class="" href="{{ path('article_new') }}">
+        <button type="button" class="btn rounded-pill bg-orange text-white fw-bold mb-3">Nouvel Article</button>
+    </a>
+
+    <div class="card text-end rounded fs-1 text-white fw-bold border-0 bg-transparent mb-5">
+        <img src="{{ asset('img/ivan-diaz-dmhv6.png') }}" class="card-img" alt="image">
+        <div class="card-img-overlay d-flex align-items-center justify-content-start">
+           <div>
+                <p class="card-text">
+                    <span>DÉCOUVREZ </span><span class="text-orange">L'ESPACE</span>
+                </p>
+                <p class="card-text">COMME JAMAIS</p>
+                <p class="card-text">AUPARAVANT</p>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="text-orange fw-bold">Nos Articles</h1>
+
+    {% if articles %}
+        <div class="articleList d-flex justify-content-around flex-wrap mt-3 fw-bold">
+            {% for article in articles %}
+                <a class="each-article text-decoration-none text-orange" href="{{ path('article_show', {'id': article.id , 'title': article.title | replace({' ': "-"}) }) }}" title="Voir l'article">
+                    <div class="madivimg">
+                        <img class="imageamoi" src="{{ asset('uploads/covers/' ~ article.cover) }}" alt="">
+                    </div>
+                    <p class="montexte px-2">{{ article.title }}</p>
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+        no records found
+    {% endif %}
+
+{% endblock %}
